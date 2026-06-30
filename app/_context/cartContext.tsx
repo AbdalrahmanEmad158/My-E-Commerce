@@ -25,9 +25,6 @@ function updateNumberOfCartItem(number:number)
 }
 
 
-export function useCart(){
-  const cartUser = useContext(Cartcontext)
-  if(cartUser)
-  {return cartUser}
-  else {'can not use cart context outside its context'}
+export function useCart() {
+  return useContext(Cartcontext);
 }

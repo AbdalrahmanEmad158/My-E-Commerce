@@ -23,7 +23,7 @@ export default function Navbar({
   const [isCategoriesDropdownOpen, setIsCategoriesDropdownOpen] = useState(false);
   const [isMobileCategoriesOpen, setIsMobileCategoriesOpen] = useState(false); // Mobile
   const userDropdownRef = useRef<HTMLDivElement>(null);
-  const categoriesDropdownRef = useRef<HTMLDivElement>(null);
+ const categoriesDropdownRef = useRef<HTMLLIElement>(null);
 
   const { data, status } = useSession();
   const userName = data?.user?.name ?? '';

@@ -1,7 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/button'
 import React from 'react'
-import { addtoCart } from '../../Cart/cart.action'
+import { addtoCart } from '../../cart/cart.action'
 import { toast } from 'sonner'
 import { cartContextType, useCart } from '../../_context/cartContext'
 import { useRouter } from 'next/navigation'

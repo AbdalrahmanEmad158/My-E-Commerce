@@ -19,7 +19,7 @@ export function NavTapsProductDetails({product}:{product:Data}) {
     <Tabs defaultValue="overview" className="w-[400px]">
       <TabsList>
         <TabsTrigger value="overview">Product Details</TabsTrigger>
-        <TabsTrigger value="analytics">Reviews {product.}</TabsTrigger>
+        <TabsTrigger value="analytics">Reviews </TabsTrigger>
         <TabsTrigger value="reports">Shipping & Returns</TabsTrigger>
         <TabsTrigger value="settings">Settings</TabsTrigger>
         Product Details
