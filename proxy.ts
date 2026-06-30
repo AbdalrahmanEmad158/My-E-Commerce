@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import nextConfig from './next.config';
+
 import { getToken } from "next-auth/jwt";
 
 export async function proxy(req : NextRequest) {
@@ -16,6 +16,6 @@ export async function proxy(req : NextRequest) {
          else{return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/Login`)}
    }
 }
-export const Config = {
+export const config = {
    matcher:['/cart','/allorders','/wishlist']
 }
