@@ -170,7 +170,7 @@ export async function visaOrder(cartId:string , values : CheakOut)
 
 const token = await getDecodedUserToken()
 console.log('decodeddd is ' , token)
-     const response = await fetch(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://my-e-commerce-plum.vercel.app/`,{
+     const response = await fetch(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=${process.env.NEXTAUTH_URL}/`,{
 
               method:'POST',
            body:JSON.stringify(values),
