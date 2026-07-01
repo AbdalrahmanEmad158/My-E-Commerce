@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
-import { dataOfBrands, getAllBrandsData } from "@/interfaces/getAllBrands.interface"
+
 import { getAllCategoriesData } from "@/interfaces/getAllCategories.interface"
 
 

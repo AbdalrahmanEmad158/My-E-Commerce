@@ -1,12 +1,12 @@
-import React from 'react'
+
 
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+
 import {
   Card,
   CardAction,
   CardDescription,
-  CardFooter,
+
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -37,7 +37,7 @@ export default function ProductCard({product,isHome=false,isProduct=false}:{prod
       )}
 
     <div className="absolute top-10 right-2 flex flex-col gap-2 transition">
-        <AddToWishListBtn productId={product._id} isHome={isHome} IsProduct={isProduct} />
+        <AddToWishListBtn productId={product._id}  />
         <button className="bg-white p-2 rounded-full shadow">🔄</button>
          <Link href={`/Products/${product._id}`} >
         <button className="bg-white p-2 rounded-full shadow cursor-pointer hover:bg-green-600
@@ -100,7 +100,7 @@ export default function ProductCard({product,isHome=false,isProduct=false}:{prod
         </Link>
          */}
     
-         <AddProductToCartBtn productId={product._id} isProductCard ={true} className={"bg-green-500 hover:bg-green-800 text-white w-9 h-9 rounded-full flex items-center justify-center text-lg"} >
+         <AddProductToCartBtn productId={product._id}className={"bg-green-500 hover:bg-green-800 text-white w-9 h-9 rounded-full flex items-center justify-center text-lg"} >
     
               
                     +

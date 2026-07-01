@@ -1,7 +1,7 @@
-import { getDecodedUserId } from '@/lib/getUserId'
+
 import { getUsetWishlist } from '@/services/getUserWishlist'
 import Link from 'next/link'
-import React from 'react'
+
 import ProductWishlistTable from '../_myComponants/ProductWishlistTable/ProductWishlistTable'
 
 export default async function wishlist() {

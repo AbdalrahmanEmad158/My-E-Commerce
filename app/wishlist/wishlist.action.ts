@@ -1,7 +1,7 @@
 'use server'
 import { getDecodedUserId } from "@/lib/getUserId";
 import { getDecodedUserToken } from "@/lib/getUserToken";
-import { revalidatePath } from "next/cache";
+
 
 export async function removeFromWishlist(productId:string) {
  const token = await getDecodedUserToken()

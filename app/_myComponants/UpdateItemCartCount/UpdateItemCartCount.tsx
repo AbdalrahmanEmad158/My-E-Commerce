@@ -1,6 +1,6 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import React from 'react'
+
 import { updateItemCartCount } from '../../cart/cart.action'
 
 type UpdateItemCartCountProps = {

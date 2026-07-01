@@ -23,6 +23,13 @@ export function NavTapsProductDetails({product}:{product:Data}) {
         <TabsTrigger value="reports">Shipping & Returns</TabsTrigger>
         <TabsTrigger value="settings">Settings</TabsTrigger>
         Product Details
+        {product && (
+          <div>
+            <p>Product Name: {product.title}</p> 
+            <p>Product Price: {product.price}</p>
+            <p>Product Description: {product.description}</p>
+          </div>
+        )}
 
 
 

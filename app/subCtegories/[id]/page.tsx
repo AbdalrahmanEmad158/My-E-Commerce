@@ -1,10 +1,10 @@
 import { getAllProductsWithParam } from '@/services/product.services';
-import React from 'react'
+
 import ProductCard from '../../_myComponants/ProductCard/ProductCard';
 import { Product } from '@/interfaces/product.interface';
 import NoProductsFound from '../../_myComponants/NoProductsFound/NoProductsFound';
 import { getSpicificCategors } from '@/services/SubCategories.services';
-import Image from 'next/image';
+
 import { Folder } from 'lucide-react';
 
 export default async function subcategoriesProducts({params}:Promise<{id:string}>) {

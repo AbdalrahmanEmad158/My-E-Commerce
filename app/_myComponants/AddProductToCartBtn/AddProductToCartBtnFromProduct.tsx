@@ -8,12 +8,12 @@ import { useRouter } from 'next/navigation'
 
 export  default function AddProductToCartBtn({
   productId,
-  isProductCard = true,
+
   children,
   className
 }: {
   productId: string
-  isProductCard?: boolean
+
    children: React.ReactNode
     className?: string
 }){

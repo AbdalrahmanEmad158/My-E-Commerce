@@ -1,35 +1,24 @@
 'use client'
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { LoginScehma, RegistritionScehma } from '../_Scehmas/AuthSchema';
+import { LoginScehma } from '../_Scehmas/AuthSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { toast, Toaster } from 'sonner';
-import { redirect, useRouter } from 'next/navigation';
+import { toast} from 'sonner';
+import {  useRouter } from 'next/navigation';
 import { EyeClosed, Loader } from 'lucide-react';
 import { Eye } from 'iconsax-reactjs';
 import { LoginValues } from '@/interfaces/Login.interface';
-import { getCurrentLoggedUserCart, LoginAction } from './Login.action';
+import { getCurrentLoggedUserCart} from './Login.action';
 import { Button } from '@/components/ui/button';
 import { FieldError, FieldLabel, Field } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { signIn } from 'next-auth/react';
-import { email } from 'zod';
+
 import { cartContextType, useCart } from '../_context/cartContext';
 import { useWishlist, WishlistContextType } from '../_context/wishlistContext';
 import { getUsetWishlist } from '@/services/getUserWishlist';
-import banner4 from '../../finalProjectimages/banner-4.jpeg';
-import blogImg1 from '../../finalProjectimages/blog-img-1.jpeg';
-import blogImg2 from '../../finalProjectimages/blog-img-2.jpeg';
 
-import logo from '../../finalProjectimages/freshcart-logo.svg';
-
-import groceryBanner2 from '../../finalProjectimages/grocery-banner-2.jpeg';
-import groceryBanner from '../../finalProjectimages/grocery-banner.png';
-
-import slider2 from '../../finalProjectimages/slider-2.jpeg';
-import sliderImage1 from '../../finalProjectimages/slider-image-1.jpeg';
-import sliderImage3 from '../../finalProjectimages/slider-image-3.jpeg';
 import login_photo from '../../finalProjectimages/login-photo.png';
 import Image from 'next/image';
 import Link from 'next/link';

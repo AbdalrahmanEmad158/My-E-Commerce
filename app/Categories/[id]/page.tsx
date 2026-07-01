@@ -1,5 +1,5 @@
 import { getAllProductsWithParam } from '@/services/product.services';
-import React from 'react'
+
 import ProductCard from '../../_myComponants/ProductCard/ProductCard';
 import { Product } from '@/interfaces/product.interface';
 import { getSpecificCategory } from '@/services/Categories.services';

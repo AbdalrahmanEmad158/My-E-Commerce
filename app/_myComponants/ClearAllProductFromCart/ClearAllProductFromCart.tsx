@@ -1,6 +1,6 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import React from 'react'
+
 import { clearAllProduct } from '../../cart/cart.action';
 import { toast } from 'sonner';
 import { cartContextType, useCart } from '../../_context/cartContext';

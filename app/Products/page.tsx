@@ -1,5 +1,5 @@
 import { getAllProducts } from "@/services/product.services";
-import Image from "next/image";
+
 import ProductCard from './../_myComponants/ProductCard/ProductCard';
 
 export default async function Home() {

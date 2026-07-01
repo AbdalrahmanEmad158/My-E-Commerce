@@ -1,6 +1,4 @@
 
-import React from 'react'
-
 import { getAllCategors } from '@/services/Categories.services'
 import CategorsCard from '../_myComponants/CategoriesCard/CategoriesCard'
 

@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from './_myComponants/Navbar/Navbar';
-import { SessionProvider } from 'next-auth/react';
+
 import SessionProviderServer from "./_myComponants/SessionProviderServer/SessionProviderServer";
 import { Toaster } from "sonner";
 import CartContext from "./_context/cartContext";
@@ -11,7 +11,7 @@ import { getUserCart } from "@/services/getUserCart";
 import  Wishlistcontext  from "./_context/wishlistContext";
 import { getUsetWishlist } from "@/services/getUserWishlist";
 import Footer from "./_myComponants/Footer/Footer";
-import { getAllBrands } from "@/services/brands.services";
+
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 

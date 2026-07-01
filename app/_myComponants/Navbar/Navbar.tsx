@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import  { useState, useRef, useEffect } from 'react';
 import { ShoppingCart, Menu, X, Heart, User, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';

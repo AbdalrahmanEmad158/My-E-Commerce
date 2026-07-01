@@ -1,5 +1,5 @@
 import { getAllSubCategors } from '@/services/SubCategories.services'
-import React from 'react'
+
 import SubCategoryCard from '../_myComponants/SubCategoryCard/SubCategoryCard'
 
 

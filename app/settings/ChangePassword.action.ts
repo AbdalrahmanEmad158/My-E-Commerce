@@ -3,9 +3,7 @@
 import { ChangePasswordValues } from "@/interfaces/ChangePasswordValue";
 import { getDecodedUserToken } from "@/lib/getUserToken";
 
-  import CredentialsProvider from "next-auth/providers/credentials"
-  import { NextAuthOptions } from 'next-auth';
-import { useSession } from "next-auth/react";
+
 
 
 export async function changePassword(values:ChangePasswordValues) {

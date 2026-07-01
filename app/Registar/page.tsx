@@ -1,15 +1,15 @@
 'use client'
 import { Button } from '@/components/ui/button';
-import { Field, FieldDescription, FieldError, FieldLabel } from '@/components/ui/field';
+import { Field, FieldError, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { RegistritionScehma } from '../_Scehmas/AuthSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RegistarAction } from './registar.action';
-import { toast, Toaster } from 'sonner';
-import { redirect, useRouter } from 'next/navigation';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 import { EyeClosed, Loader } from 'lucide-react';
 import { Eye } from 'iconsax-reactjs';
 import { RegistarValues } from '@/interfaces/Registar.interface';

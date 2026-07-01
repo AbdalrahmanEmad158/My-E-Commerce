@@ -1,4 +1,4 @@
-import { dataOfBrands, getAllBrandsData } from "@/interfaces/getAllBrands.interface";
+import { getAllBrandsData } from "@/interfaces/getAllBrands.interface";
 import { error } from "console";
 
     const BASE_URL = "https://ecommerce.routemisr.com/api/v1";

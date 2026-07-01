@@ -1,5 +1,5 @@
 import { getAllBrands } from '@/services/brands.services'
-import React from 'react'
+
 import BrandCard from '../_myComponants/BrandCard/BrandCard'
 
 export default async function Brands() {

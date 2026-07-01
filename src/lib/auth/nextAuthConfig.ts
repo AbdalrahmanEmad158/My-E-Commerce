@@ -1,6 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials"
 import { NextAuthOptions } from 'next-auth';
-import Google from "next-auth/providers/google";
+
 import { jwtDecode } from "jwt-decode";
 
 

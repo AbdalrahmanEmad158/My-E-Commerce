@@ -1,7 +1,3 @@
-import { NextAuthConfig } from '@/lib/auth/nextAuthConfig'
-import { getServerSession } from 'next-auth'
-import { cookies } from 'next/headers'
-import React from 'react'
 import { getUserCart } from '@/services/getUserCart'
 import CartWrapper from '../_myComponants/CartWrapper/CartWrapper'
 import  Link  from 'next/link';

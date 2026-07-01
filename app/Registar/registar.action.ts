@@ -1,7 +1,7 @@
 'use server'
 
 import { RegistarValues } from "@/interfaces/Registar.interface";
-import { cookies } from "next/headers";
+
 
 export async function RegistarAction(values:RegistarValues)
 {

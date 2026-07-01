@@ -1,5 +1,4 @@
-import { Star } from 'iconsax-reactjs'
-import React from 'react'
+
 import { FaRegStar,FaStar , FaStarHalf } from 'react-icons/fa'
 export default function Rating({rate}:{rate:number}) {
   return (

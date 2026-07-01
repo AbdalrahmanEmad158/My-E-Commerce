@@ -1,4 +1,4 @@
-import { getAllBrandsData } from "@/interfaces/getAllBrands.interface";
+
 import { getAllCategories } from "@/interfaces/getAllCategories.interface";
 import { error } from "console";
 

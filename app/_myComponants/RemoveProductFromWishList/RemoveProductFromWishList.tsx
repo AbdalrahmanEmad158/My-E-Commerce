@@ -1,7 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/button'
 import { Trash2 } from 'lucide-react'
-import React from 'react'
+
 import { toast } from 'sonner'
 import { removeFromWishlist } from '../../wishlist/wishlist.action'
 import { useRouter } from 'next/navigation'

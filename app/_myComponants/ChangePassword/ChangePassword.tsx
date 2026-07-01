@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+
 import { Button } from '@/components/ui/button'
-import { Lock, Eye, EyeOff, EyeClosed, Loader2, Loader } from 'lucide-react'
+import { Lock, Eye,  EyeClosed,  Loader } from 'lucide-react'
 import { Controller, useForm } from 'react-hook-form'
 import { Field, FieldError, FieldLabel } from '@/components/ui/field'
 import { toast } from 'sonner'
@@ -14,7 +14,7 @@ import {ChangePasswordScehma}  from '../../_Scehmas/AuthSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ChangePasswordValues } from '@/interfaces/ChangePasswordValue'
 import { changePassword } from '../../settings/ChangePassword.action'
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 
 
 export default function ChangePasswordPage() {

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import ChangePasswordPage from '../_myComponants/ChangePassword/ChangePassword'
 
 export default function  settings() {

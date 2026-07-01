@@ -7,23 +7,17 @@ import { useWishlist, WishlistContextType } from '../../_context/wishlistContext
 import { useRouter } from 'next/navigation';
 export default function AddToWishListBtn({
   productId,
-  isHome = false,
-  IsProduct = false,
-  isProductDetails = false,
+
 }: {
   productId: string;
-  isHome?: boolean;
-  IsProduct?: boolean;
-  isProductDetails?: boolean;
+
 }) {
 const router = useRouter()
 const {updateNumberOfWishlistItem} = (useWishlist() as WishlistContextType)
    async function handleAddToWishList() {
      const boolAddToWishList = await AddToWishList({
   productId,
-  isHome,
-  IsProduct,
-  isProductDetails,
+ 
 })
      if (boolAddToWishList>0) {
         toast.success("Product added to wishlist successfully!",

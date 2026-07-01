@@ -1,25 +1,17 @@
 import { getProductDetails } from '@/services/product.services'
 
-import { Badge } from "@/components/ui/badge"
+
 import { Button } from "@/components/ui/button"
 import { FaHeart, FaShippingFast ,FaShieldAlt } from "react-icons/fa";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import {
-  Card,
-  CardAction,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import React from 'react'
+
+
 import { Product } from '@/interfaces/product.interface';
-import  Image  from 'next/image';
+
 import AddProductToCartBtn from '../../_myComponants/AddProductToCartBtn/AddProductToCartBtnFromProduct'
 import ProductGallery from '../../_myComponants/ProductGallery/ProductGallery'
 import Rating from '../../_myComponants/Rating/Rating'
-import UpdateItemCartCount from '../../_myComponants/UpdateItemCartCount/UpdateItemCartCount'
-import { NavTapsProductDetails } from '../../_myComponants/NavAndTapsProductDetails/NavTapsProductDetails';
+
 
 
 export default async function page({params}:Promise<{id:string}>) {
@@ -141,7 +133,7 @@ const { data }: { data: Product } = await getProductDetails(id);
           )} 
             </p>
           </div>
-           <AddProductToCartBtn productId={data._id} isProductCard={false} className={"bg-green-500 hover:bg-green-800 text-white w-full h-12 rounded-lg flex items-center justify-center text-lg"}>
+           <AddProductToCartBtn productId={data._id} className={"bg-green-500 hover:bg-green-800 text-white w-full h-12 rounded-lg flex items-center justify-center text-lg"}>
             
             
         Add To Cart
