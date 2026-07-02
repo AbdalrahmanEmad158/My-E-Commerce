@@ -12,6 +12,8 @@ import AddProductToCartBtn from '../../_myComponants/AddProductToCartBtn/AddProd
 import ProductGallery from '../../_myComponants/ProductGallery/ProductGallery'
 import Rating from '../../_myComponants/Rating/Rating'
 import RelatedProducts from '../../_myComponants/RelatedProducts/RelatedProducts';
+import AddToWishListBtn from '../../_myComponants/AddToWishListBtn/AddToWishListBtn';
+
 
 
 
@@ -134,17 +136,15 @@ const { data }: { data: Product } = await getProductDetails(id);
           )} 
             </p>
           </div>
-           <AddProductToCartBtn productId={data._id} className={"bg-green-500 hover:bg-green-800 text-white w-full h-12 rounded-lg flex items-center justify-center text-lg"}>
-            
-            
+           <div className='flex items-center gap-3'>
+            <AddProductToCartBtn productId={data._id} 
+            className={"bg-green-500 hover:bg-green-800 text-white w-full h-12 rounded-lg flex items-center justify-center text-lg"}>
         Add To Cart
      </AddProductToCartBtn>
-           <div className='flex items-center justify-between  hover:bg-accent hover:text-green-700'>
-            <FaHeart /> 
-             <Button className='bg-gray-150 border-gray-600 block hover:border-green-600
-             text-black'>
-              Add To Wash List</Button>
+   
            </div>
+             <AddToWishListBtn productId={data._id} isProductCard={false}></AddToWishListBtn>
+          
 
            <div className='flex justify-between gap-3'>
             <div className='flex justify-between gap-3 items-center'>

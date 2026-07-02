@@ -9,8 +9,10 @@ import { removeFromWishlist } from '../../wishlist/wishlist.action'
 
 export default function AddToWishListBtn({
   productId,
+  isProductCard = true,
 }: {
   productId: string
+  isProductCard?: boolean
 }) {
   const router = useRouter()
 
@@ -104,15 +106,35 @@ export default function AddToWishListBtn({
   }
 
   return (
-    <button
-      onClick={handleWishlist}
-      className="bg-white p-2 rounded-full shadow hover:bg-green-600 hover:scale-110 transition-all"
-    >
-      {isInWishlist ? (
-        <FaHeart className="text-red-500" size={18} />
-      ) : (
-        <FaRegHeart className="text-gray-500" size={18} />
-      )}
-    </button>
+ <>
+<button
+  onClick={handleWishlist}
+  className={
+    isProductCard
+      ? "bg-white p-2 rounded-full shadow hover:bg-green-600 hover:scale-110 transition-all"
+      : isInWishlist
+      ? "w-full bg-red-100 p-3 rounded-xl shadow border border-red-300 text-red-500 flex items-center justify-center gap-2"
+      : "w-full bg-white p-3 rounded-xl shadow border hover:border-green-300 hover:text-green-500 flex items-center justify-center gap-2"
+  }
+>
+  {isProductCard ? (
+    isInWishlist ? (
+      <FaHeart className="text-red-500" size={18} />
+    ) : (
+      <FaRegHeart className="text-gray-500" size={18} />
+    )
+  ) : isInWishlist ? (
+    <>
+      <FaHeart size={18} />
+      <span>Remove from Wishlist</span>
+    </>
+  ) : (
+    <>
+      <FaRegHeart size={18} />
+      <span>Add to Wishlist</span>
+    </>
+  )}
+</button>
+ </>
   )
 }
