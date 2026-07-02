@@ -11,6 +11,7 @@ import { Product } from '@/interfaces/product.interface';
 import AddProductToCartBtn from '../../_myComponants/AddProductToCartBtn/AddProductToCartBtnFromProduct'
 import ProductGallery from '../../_myComponants/ProductGallery/ProductGallery'
 import Rating from '../../_myComponants/Rating/Rating'
+import RelatedProducts from '../../_myComponants/RelatedProducts/RelatedProducts';
 
 
 
@@ -187,6 +188,9 @@ const { data }: { data: Product } = await getProductDetails(id);
 
         </div>
       </div>
+<h2 className="mt-10 mb-5 border-solid p-2 border-l-8 border-green-700 font-bold text-3xl">
+You May Also  <span className="text-green-500 underline">Like</span></h2>
+      <RelatedProducts categoryId={data.category._id} />
     </div>
 
     </>

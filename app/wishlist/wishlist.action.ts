@@ -10,7 +10,7 @@ export async function removeFromWishlist(productId:string) {
   if (!token) {
      return "no-token"
    }
- console.log('decodeddd is in whsj' , token)
+
       const response = await fetch(`https://ecommerce.routemisr.com/api/v1/wishlist/${productId }`,{
              method : 'delete',
             
@@ -20,7 +20,7 @@ export async function removeFromWishlist(productId:string) {
            if(response.ok)
              {
             const data = await response.json()
-           console.log(data , 'data of Remove Product From whishList')
+         
            if (data.status=="success") {
          
           

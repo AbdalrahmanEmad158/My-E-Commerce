@@ -11,8 +11,7 @@ export default async function allOrders() {
 
   const userOrder = await getUserOrders()
   const numOfItems = userOrder?.length
-  console.log(userOrder,'userOrder data in allOrder')
-  console.log(numOfItems,'numOfItems data in allOrder')
+
   return (
     <>
     <div className="container py-8 space-y-5 mx-auto">

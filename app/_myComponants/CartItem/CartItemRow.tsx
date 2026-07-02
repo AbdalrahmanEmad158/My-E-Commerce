@@ -26,7 +26,7 @@ export default function CartItemRow({ product }: { product: ProductCardItem }) {
           />
         </TableCell>
 
-        <TableCell>{title}</TableCell>
+        <TableCell>{title.split(' ',9).join(' ')}</TableCell>
 
         <TableCell>
           <div className="mb-3">

@@ -2,9 +2,12 @@
 
 import { Phone, Mail, MapPin } from "lucide-react"
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa"
+import FeaturesFooter from "../FeatureCardFooter/FeatureCardFooter";
 
 export default function Footer() {
   return (
+   <>
+    <FeaturesFooter></FeaturesFooter>
     <footer className="bg-slate-900 text-gray-300 pt-16 pb-8">
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
         
@@ -113,7 +116,7 @@ export default function Footer() {
           <span>PayPal</span>
         </div>
       </div>
-    </footer>
+    </footer></>
   )
 }
 

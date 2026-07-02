@@ -10,7 +10,13 @@ import { useWishlist, WishlistContextType } from '../../_context/wishlistContext
 
 export default function RemoveProductFromWishList({productId}:{productId:string}) {
     const router = useRouter()
-    const {updateNumberOfWishlistItem } = (useWishlist() as WishlistContextType)
+
+      const {
+    wishlistItems,
+    setWishlistItems,
+    numberOfWishlistItems,
+    updateNumberOfWishlistItem,
+  } = useWishlist() as WishlistContextType
     async function handleRemoveProductFromWishList()
     
     {
@@ -28,6 +34,9 @@ export default function RemoveProductFromWishList({productId}:{productId:string}
         {
           toast.success('product Delete Your Your WishList Successful',{richColors : true})
           updateNumberOfWishlistItem(result)
+          setWishlistItems((prev) =>
+            prev.filter((item) => item._id !== productId)
+          )
           router.refresh()
           
         }

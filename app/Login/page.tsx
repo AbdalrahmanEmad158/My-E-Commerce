@@ -46,7 +46,7 @@ function hundleShowPassword()
 
 
   async function sunmitLoginForm(values : LoginValues) {
-   console.log(values) 
+
    setisLoading(true)
  try {
    const res = await signIn('credentials' , {
@@ -96,7 +96,7 @@ function hundleShowPassword()
 
  } 
  catch (error) {
-  console.log(error)
+
  }  
 
 finally{setisLoading(false)}

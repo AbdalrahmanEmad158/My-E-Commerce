@@ -18,7 +18,8 @@ import Rating from '../Rating/Rating'
 import AddToWishListBtn from '../AddToWishListBtn/AddToWishListBtn'
 
 
-export default function ProductCard({product,isHome=false,isProduct=false}:{product:Product,isHome?:boolean,isProduct?:boolean}) {
+export default function ProductCard({product}:{product:Product}) {
+  console.count("ProductCard");
     const discount =
     product.priceAfterDiscount
       ? Math.round(((product.price - product.priceAfterDiscount) / product.price) * 100)

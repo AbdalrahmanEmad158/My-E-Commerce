@@ -6,12 +6,12 @@ export async function getUsetWishlist() :Promise<getMyWishList |undefined>
 {
    const token= await getDecodedUserToken();
      if (token) {
-  console.log('decodeddd token in wishlist is ' , token)
+
    try {
       const response = await fetch(`https://ecommerce.routemisr.com/api/v1/wishlist`,
         { headers : {token : token as string}}
           );
-           console.log(response , 'response of User wish List')
+      
 
          if (response.ok) {
           
@@ -19,7 +19,7 @@ export async function getUsetWishlist() :Promise<getMyWishList |undefined>
         if(data.status=='success')
         {
             
-          console.log(data , 'data of User wish List')
+   
         return data
         }
          }

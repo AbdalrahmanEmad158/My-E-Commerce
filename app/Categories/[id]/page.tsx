@@ -9,7 +9,7 @@ export default async function categoriesProducts({params}:Promise<{id:string}>) 
   const {id} = await params
 const { data }: { data: Product[] } = await getAllProductsWithParam('category[in]',id);
 const dataOfCategorie = await getSpecificCategory(id)
-  console.log('data of Specific Categorie in haha',dataOfCategorie)
+
 
 
 return <>

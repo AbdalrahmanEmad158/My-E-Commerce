@@ -4,14 +4,10 @@ import { revalidatePath } from "next/cache";
 
  export async function AddToWishList({
   productId,
-  isHome = false,
-  IsProduct = false,
-  isProductDetails = false,
+
 }: {
   productId: string;
-  isHome?: boolean;
-  IsProduct?: boolean;
-  isProductDetails?: boolean;
+
 }) {
     const token =await getDecodedUserToken();
 
@@ -33,31 +29,15 @@ import { revalidatePath } from "next/cache";
             }
 
             const data = await response.json();
-            console.log("Product added to wishlist:", data);
+         
             
              if (data.status=="success") {
-          if (isHome) {
-            revalidatePath("/")
-          }
-          if (IsProduct) {
-            revalidatePath("/Products")
-          }
-            if (isProductDetails) {
-            revalidatePath(`/Products/${productId}`)
-          }
+          
             return data.data.length
           }
           else 
           {
-              if (isHome) {
-            revalidatePath("/")
-          }
-          if (IsProduct) {
-            revalidatePath("/Products")
-          }
-            if (isProductDetails) {
-            revalidatePath(`/Products/${productId}`)
-          }
+           
             return false
           }
         }

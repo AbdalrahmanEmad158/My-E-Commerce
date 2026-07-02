@@ -5,7 +5,7 @@ import CategorsCard from '../_myComponants/CategoriesCard/CategoriesCard'
 export default async function Catigories() {
   const Categors = await getAllCategors()
   const CategorsData = Categors.data
-  console.log('Categors in Categors',Categors)
+ 
   return (
         <div className="container mx-auto py-10">
       

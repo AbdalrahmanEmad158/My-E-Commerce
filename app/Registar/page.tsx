@@ -46,7 +46,7 @@ function hundleShowrePassword()
  
 
   async function sunmitRegistarForm(values : RegistarValues) {
-   console.log(values) 
+
    setisLoading(true)
  try {
     const registarBool = await RegistarAction(values)
@@ -68,7 +68,7 @@ function hundleShowrePassword()
    }
  } 
  catch (error) {
-  console.log(error)
+
  }
 
 finally{setisLoading(false)}

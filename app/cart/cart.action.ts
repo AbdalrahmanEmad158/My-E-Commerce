@@ -16,7 +16,7 @@ const token = await getDecodedUserToken()
  if (!token) {
     return "no-token"
   }
-console.log('decodeddd is ' , token)
+
      const response = await fetch("https://ecommerce.routemisr.com/api/v1/cart",{
             method : 'POST',
              body: JSON.stringify({
@@ -26,7 +26,7 @@ console.log('decodeddd is ' , token)
           }
           );
           const data :CartResponseAdd= await response.json()
-          console.log(data , 'data of AddToCart')
+        
           if (data.status=="success") {
 
            
@@ -43,7 +43,7 @@ export async function updateItemCartCount(id:string , count:number)
 {
 
 const token = await getDecodedUserToken()
-console.log('decodeddd is ' , token)
+
      const response = await fetch(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,{
 
               method:'PUT',
@@ -54,7 +54,7 @@ console.log('decodeddd is ' , token)
           if(response.ok)
           {
                   const data = await response.json()
-          console.log(data , 'data of ubdate count Cart')
+       
           if (data.status=="success") {
          
             revalidatePath('/Cart')
@@ -75,7 +75,7 @@ const token = await getDecodedUserToken()
  if (!token) {
     return "no-token"
   }
-console.log('decodeddd is ' , token)
+
      const response = await fetch(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`,{
             method : 'delete',
            
@@ -85,7 +85,7 @@ console.log('decodeddd is ' , token)
           if(response.ok)
             {
            const data :CartResponseAdd= await response.json()
-          console.log(data , 'data of Remove Product From Cart')
+         
           if (data.status=="success") {
          revalidatePath('/Cart')
          
@@ -114,7 +114,7 @@ export async function clearAllProduct() {
       )
       if (res.ok) {
          const data = await res.json()
-         console.log('data of clear all product' , data)
+       
          revalidatePath('/Cart')
          return true
       }
@@ -135,7 +135,7 @@ export async function cashOrder(cartId:string , values : CheakOut)
 
 const token = await getDecodedUserToken()
 if (token) {
-  console.log('decodeddd is ' , token)
+
    try {
       const response = await fetch(`https://ecommerce.routemisr.com/api/v1/orders/${cartId}`,{
 
@@ -146,7 +146,7 @@ if (token) {
           );
          if (response.ok) {
            const data = await response.json()
-          console.log(data , 'data of cash order Cart')
+         
           if (data.status=="success") {
             return data
            // redirect('/Cart')
@@ -169,7 +169,7 @@ export async function visaOrder(cartId:string , values : CheakOut)
 {
 
 const token = await getDecodedUserToken()
-console.log('decodeddd is ' , token)
+
      const response = await fetch(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=${process.env.NEXTAUTH_URL}/`,{
 
               method:'POST',
@@ -178,7 +178,7 @@ console.log('decodeddd is ' , token)
           }
           );
           const data = await response.json()
-          console.log(data , 'data of visa order Cart')
+        
           if (data.status=="success") {
          
             return data.session.url

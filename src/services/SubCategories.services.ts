@@ -9,11 +9,11 @@ export async function getAllSubCategors(): Promise<getAllSubCategories> {
     const resp = await fetch(`${BASE_URL}/subcategories`, {
       next: { revalidate: 60*5}
     });
-console.log('response of subcategories',resp)
+
 
     if (resp.ok) {
        const data = await resp.json();
-  console.log('data of subcategories',data)
+
    
     return data;
     }
@@ -34,11 +34,11 @@ export async function getSpicificCategors(id:string){
     const resp = await fetch(`${BASE_URL}/subcategories/${id}`, {
       next: { revalidate: 60*5}
     });
-console.log('response of subcategories',resp)
+
 
     if (resp.ok) {
        const data = await resp.json();
-  console.log('data of subcategories',data)
+ 
    
     return data;
     }

@@ -55,7 +55,7 @@ function hundleShowConfirm()
     try {
       setisLoading(true);
       const response = await changePassword(values);
-      console.log(response);
+    
 
       if (response?.message == "success") {
         toast.success("Password Changed Successfully please login again with new password",
@@ -70,7 +70,7 @@ function hundleShowConfirm()
   password: values.password,
       
 });
-console.log('test 2')
+
   setTimeout(()=>{
          router.push('/')
         
@@ -85,10 +85,10 @@ console.log('test 2')
             position:'top-right'
           }
         );
-        console.log('response?.errors?.msg',response?.errors?.msg)
+      
       } else {
         toast.error(response?.message);
-              console.log('response?.errors?.msg',response?.message)
+         
       }
     } catch (err) {
       console.error("Error updating password:", err);

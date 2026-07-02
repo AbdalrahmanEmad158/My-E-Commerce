@@ -72,7 +72,7 @@ export default function Navbar({
             {/* Logo and Main Navigation */}
             <div className="flex items-center gap-8">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">
+                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-white font-bold">
                   🛒
                 </div>
                 <span className="text-xl font-bold text-gray-800">FreshCart</span>

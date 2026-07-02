@@ -25,16 +25,16 @@ export async function changePassword(values:ChangePasswordValues) {
       },
     },
   );
-  console.log('reponse of change password',response  )
+
   if (response.ok) {
     
   const data =await response?.json()
-  console.log('data of change password',data  )
+ 
   return data;
   }
 
   else{ const data =await response?.json()
-  console.log('data of change password not ok',data  )
+ 
   return data;
 }
  } catch (error) {

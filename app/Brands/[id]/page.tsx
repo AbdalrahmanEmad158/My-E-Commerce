@@ -9,7 +9,7 @@ export default async function page({params}:Promise<{id:string}>) {
   const {id} = await params
 const { data }: { data: Product[] } = await getAllProductsWithParam('brand',id);
 const dataOfBrand = await getSpecificBrand(id)
-  console.log('data of Specific brands in haha',dataOfBrand)
+
 
 
 

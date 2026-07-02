@@ -8,11 +8,10 @@ export async function getAllBrands(): Promise<getAllBrandsData> {
     const resp = await fetch(`${BASE_URL}/brands`, {
       next: { revalidate: 60*5}
     });
-console.log('response of brands',resp)
 
     if (resp.ok) {
        const data = await resp.json();
-  console.log('data of brands',data)
+
    
     return data;
     }
@@ -36,11 +35,11 @@ export async function getSpecificBrand(id : string) {
     const resp = await fetch(`${BASE_URL}/brands/${id}`, {
       next: { revalidate: 60*5}
     });
-console.log('response of Specific brands',resp)
+
 
     if (resp.ok) {
        const data = await resp.json();
-  console.log('data of Specific brands',data)
+
    
     return data;
     }
@@ -49,7 +48,7 @@ console.log('response of Specific brands',resp)
 
   } catch (error) {
     
-    console.error("getAllBrands error:", error);
+   
     throw error
   }
 }

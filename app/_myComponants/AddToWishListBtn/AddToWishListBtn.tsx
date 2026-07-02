@@ -1,55 +1,118 @@
 'use client'
-import { getDecodedUserToken } from '@/lib/getUserToken';
-import React from 'react'
-import { toast } from 'sonner';
-import { AddToWishList } from '../../Products/Product.action.AddToWishList';
-import { useWishlist, WishlistContextType } from '../../_context/wishlistContext';
-import { useRouter } from 'next/navigation';
+
+import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
+import { useWishlist, WishlistContextType } from '../../_context/wishlistContext'
+import { AddToWishList } from '../../Products/Product.action.AddToWishList'
+import { removeFromWishlist } from '../../wishlist/wishlist.action'
+
 export default function AddToWishListBtn({
   productId,
-
 }: {
-  productId: string;
-
+  productId: string
 }) {
-const router = useRouter()
-const {updateNumberOfWishlistItem} = (useWishlist() as WishlistContextType)
-   async function handleAddToWishList() {
-     const boolAddToWishList = await AddToWishList({
-  productId,
- 
-})
-     if (boolAddToWishList>0) {
-        toast.success("Product added to wishlist successfully!",
-            {richColors : true , position :'top-right'}
-        );
-        updateNumberOfWishlistItem(boolAddToWishList)
-        } 
-        else if (boolAddToWishList==undefined)
-        {  toast.error("Failed to add product to wishlist. Please signin.",
-              {richColors : true , position :'top-right'}
-            );
-             setTimeout(()=>{
-         router.push('/Login')
-        
-        }
-          ,2000)
-          }
-        else {
-            toast.error("Failed to add product to wishlist. Please try again.",
-              {richColors : true , position :'top-right'}
-            );
-        }
-   }
+  const router = useRouter()
+
+
+  const {
+    wishlistItems,
+    setWishlistItems,
+    numberOfWishlistItems,
+    updateNumberOfWishlistItem,
+  } = useWishlist() as WishlistContextType
+
+  const isInWishlist = wishlistItems.some(
+    (item) => item._id === productId
+  )
+
+
+  async function handleWishlist() {
+    // =======================
+    // Remove
+    // =======================
+    if (isInWishlist) {
+      const result = await removeFromWishlist(productId)
+
+      if (result === 'no-token') {
+        toast.error('Please login first', {
+          richColors: true,
+        })
+        router.push('/Login')
+        return
+      }
+
+      if (result === 'false') {
+        toast.error('Something went wrong', {
+          richColors: true,
+        })
+        return
+      }
+
+      setWishlistItems((prev) =>
+        prev.filter((item) => item._id !== productId)
+      )
+
+      updateNumberOfWishlistItem(Number(result))
+
+      toast.success('Removed from wishlist', {
+        richColors: true,
+      })
+
+      return
+    }
+
+    // =======================
+    // Add
+    // =======================
+    const result = await AddToWishList({
+      productId,
+    })
+
+    if (result === undefined) {
+      toast.error('Please login first', {
+        richColors: true,
+      })
+
+      setTimeout(() => {
+        router.push('/Login')
+      }, 1500)
+
+      return
+    }
+
+    if (result === false) {
+      toast.error('Something went wrong', {
+        richColors: true,
+      })
+
+      return
+    }
+
+    setWishlistItems((prev) => [
+      ...prev,
+      {
+        _id: productId,
+      },
+    ])
+
+    updateNumberOfWishlistItem(result)
+
+    toast.success('Added to wishlist', {
+      richColors: true,
+    })
+  }
+
   return (
-    <div>
-      <button 
-        className="bg-white p-2 rounded-full shadow cursor-pointer hover:bg-green-600
-        hover:scale-110 transition-all " 
-        onClick={handleAddToWishList}
-      >
-        ❤️
-      </button>
-    </div>
+    <button
+      onClick={handleWishlist}
+      className="bg-white p-2 rounded-full shadow hover:bg-green-600 hover:scale-110 transition-all"
+    >
+      {isInWishlist ? (
+        <FaHeart className="text-red-500" size={18} />
+      ) : (
+        <FaRegHeart className="text-gray-500" size={18} />
+      )}
+    </button>
   )
 }

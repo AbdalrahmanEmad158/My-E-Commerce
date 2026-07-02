@@ -49,7 +49,7 @@ secret: process.env.NEXTAUTH_SECRET,
             token.token=user.Token
             token.id=user.id
         }
-        console.log(token,'collback token cookies')
+      
         return token
     },
     session:({session,token,user})=>{
@@ -57,7 +57,7 @@ secret: process.env.NEXTAUTH_SECRET,
        // session.id = token.id
 
       session.user.id=token.id
-      console.log(session,'session')
+    
         return session
     }
     },

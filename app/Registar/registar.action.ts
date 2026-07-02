@@ -13,7 +13,7 @@ export async function RegistarAction(values:RegistarValues)
           }
           );
           const data = await response.json()
-         /* console.log(data , 'data of registar')*/
+     
           if (data.message=="success") {
            /* const cookie =await cookies()
             cookie.set('token',data.token,

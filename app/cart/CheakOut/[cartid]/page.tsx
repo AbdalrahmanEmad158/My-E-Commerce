@@ -18,7 +18,7 @@ import { cheakOutSchema } from '../../../_Scehmas/cheakOutSchema'
 export default function page() {
     const{cartid} = useParams()
     const router = useRouter()
-    console.log(cartid ,'cartid')
+  
     const[paymentMehoud,setPaymentMehoud] = useState<'cash'|'visa'>()
       const {updateNumberOfCartItem} = (useCart() as cartContextType)
 
@@ -34,7 +34,7 @@ const{handleSubmit, formState:{errors} , register,control} = useForm<CheakOut>({
   });
 
  async function hundleCheakOut(values:CheakOut){
-console.log(values)
+
 if (paymentMehoud=="cash") {
     
          const res = await  cashOrder(cartid as string,values);

@@ -5,7 +5,7 @@ import BrandCard from '../_myComponants/BrandCard/BrandCard'
 export default async function Brands() {
   const brands = await getAllBrands()
   const brandsData = brands.data
-  console.log('brands in brands',brands)
+
   return (
         <div className="container mx-auto py-10">
       
