@@ -13,6 +13,7 @@ import ProductGallery from '../../_myComponants/ProductGallery/ProductGallery'
 import Rating from '../../_myComponants/Rating/Rating'
 import RelatedProducts from '../../_myComponants/RelatedProducts/RelatedProducts';
 import AddToWishListBtn from '../../_myComponants/AddToWishListBtn/AddToWishListBtn';
+import { NavTapsProductDetails } from '../../_myComponants/NavAndTapsProductDetails/NavTapsProductDetails';
 
 
 
@@ -180,7 +181,6 @@ const { data }: { data: Product } = await getProductDetails(id);
           
 
 
-/* NavTapsProductDetails product = data/NavTapsProductDetails */
 
 
               
@@ -188,6 +188,7 @@ const { data }: { data: Product } = await getProductDetails(id);
 
         </div>
       </div>
+      <NavTapsProductDetails product={data}></NavTapsProductDetails>
 <h2 className="mt-10 mb-5 border-solid p-2 border-l-8 border-green-700 font-bold text-3xl">
 You May Also  <span className="text-green-500 underline">Like</span></h2>
       <RelatedProducts categoryId={data.category._id} />

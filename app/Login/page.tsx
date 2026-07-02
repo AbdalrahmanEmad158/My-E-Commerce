@@ -191,9 +191,9 @@ finally{setisLoading(false)}
               <input type="checkbox" />
               Keep me signed in
             </label>
-            <span className="text-green-600 cursor-pointer">
+            <Link href="/forget-password" className="text-green-600 hover:underline">
               Forgot Password?
-            </span>
+            </Link>
           </div>
 
           {/* BUTTON */}

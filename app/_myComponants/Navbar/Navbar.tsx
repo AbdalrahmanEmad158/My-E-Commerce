@@ -228,13 +228,7 @@ export default function Navbar({
                         >
                           My Wishlist
                         </Link>
-                        <Link
-                          href="/addresses"
-                          className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-600 transition"
-                          onClick={() => setIsUserDropdownOpen(false)}
-                        >
-                          Addresses
-                        </Link>
+                       
                         <Link
                           href="/settings"
                           className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-600 transition"
@@ -446,13 +440,7 @@ export default function Navbar({
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/addresses"
-                        className="text-gray-700 hover:text-green-600 font-medium transition block"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        Addresses
-                      </Link>
+                   
                     </li>
                     <li>
                       <Link
