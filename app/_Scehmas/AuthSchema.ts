@@ -39,5 +39,28 @@ import z from "zod";
         message :'Passwords do not match',
         path : ["rePassword"]
       })
+
+
+
+
+
+         export  const forgotPasswordSchemaStep1 =  z.object({
+              email:z.string().min(1,'Email is required').email("email is Not Valid"),
+          
+        })
+
+         export  const forgotPasswordSchemaStep2 =  z.object({
+              resetCode:z.string().min(5,"the reset code is 5 or 6 digit").max(6,"the reset code is 5 or 6 digit")
+          
+        })
+
+
+        export  const forgotPasswordSchemaStep3 =  z.object({
+             email:z.string().min(1,'Email is required').email("email is Not Valid"),
+                newPassword:z.string().min(1,'password is required').regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+                'Password must contain at least one letter small ,one letter capital, one number and one special character'),
+          
+        })
+      
       
       

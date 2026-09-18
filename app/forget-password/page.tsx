@@ -1,11 +1,73 @@
+'use client'
 import Link from "next/link";
-import { Mail, KeyRound, Lock, ArrowLeft } from "lucide-react";
+import { Mail, KeyRound, Lock, ArrowLeft, Router } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { sendResetCodeAction } from "./forgetPassword.action";
+import { Controller, useForm } from "react-hook-form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
+import { useState } from "react";
+import { forgotPasswordSchemaStep1 } from "../_Scehmas/AuthSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ChangePasswordValues } from "@/interfaces/ChangePasswordValue";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { forgotPasswordStep1Values } from "@/interfaces/forgotPasswordStep1.interface";
+
 
 export default function ForgotPasswordStep1() {
+ const router = useRouter()
+  const{handleSubmit, formState , register,control,reset} = useForm({
+      resolver : zodResolver(forgotPasswordSchemaStep1),
+      defaultValues : {
+        email:""
+        
+      }
+    });
+
+  const[isLoading , setisLoading] = useState(false)
+ 
+ async function handleSendResetCode(values: forgotPasswordStep1Values) {
+   
+ console.log(values,"valllla")
+    try {
+      setisLoading(true);
+      const response = await sendResetCodeAction(values);
+     console.log(response,"dataaalresponse")
+
+      if (response.message == "Reset code sent to your email") {
+        toast.success("Reset code sent to your email",
+          {richColors : true, 
+            position:'top-right'
+          }
+        );
+         reset()
+  setTimeout(()=>{
+         router.push(`/forget-password/verify?email=${encodeURIComponent(String(values.email))}`)
+        
+        }
+          ,2000)
+       
+      }
+      
+      else {
+        toast.error(response?.message,
+            {richColors : true, 
+            position:'top-right'
+          }
+        );
+      
+      } 
+    } catch (err) {
+      console.error("Error updating password:", err);
+    } finally {
+      setisLoading(false);
+    }
+  }
+
+ 
+ 
   return (
     <>
       <div>
@@ -38,25 +100,26 @@ export default function ForgotPasswordStep1() {
         </div>
 
         {/* Native Form with Server Action */}
-        <form action={sendResetCodeAction} className="space-y-5">
-          <div className="space-y-2">
-            <Label htmlFor="email" className="text-xs font-semibold text-slate-700">
-              Email Address
-            </Label>
-            <div className="relative">
-              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="Enter your email address"
-                required
-                className="pl-10 h-11 border-slate-200 focus-visible:ring-emerald-500"
-              />
-            </div>
-          </div>
+        <form onSubmit={handleSubmit(handleSendResetCode)} className="space-y-5">
+         <Controller
+            name="email"
+            control={control}
+            render={({ field, fieldState }) => (
+              <Field className="mb-5">
+                <FieldLabel>Email</FieldLabel>
+                <Input
+                  {...field}
+                  placeholder="Abdalrahman@example.com"
+                  className="h-12"
+                />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
+          />
 
-          <Button type="submit" className="w-full h-11 bg-emerald-600 hover:bg-emerald-700 text-white font-medium">
+          <Button disabled={isLoading} type="submit" className="w-full h-11 bg-emerald-600 hover:bg-emerald-700 text-white font-medium">
             Send Reset Code
           </Button>
         </form>

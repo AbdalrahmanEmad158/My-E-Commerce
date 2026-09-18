@@ -1,20 +1,84 @@
+'use client'
 import Link from "next/link";
-import { Mail, KeyRound, Lock } from "lucide-react";
+import { Mail, KeyRound, Lock, EyeClosed, Eye } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { resetPasswordAction } from "../forgetPassword.action";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export default async function ResetPasswordStep3({
-  searchParams,
-}: {
-  searchParams: Promise<{ email?: string }>;
-}) {
+import { Controller, useForm } from "react-hook-form";
+import { forgotPasswordSchemaStep3 } from "../../_Scehmas/AuthSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { forgotPasswordStep3Values } from "@/interfaces/forgotPasswordStep3.interface";
+import { toast } from "sonner";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
+
+export default function ResetPasswordStep3() {
  
-  const resolvedParams = await searchParams;
-  const userEmail = resolvedParams?.email || "";
-  console.log("resolvedParams",resolvedParams,"resolvedParams")
-    console.log("userEmail",userEmail,"userEmail")
+  const searchParams = useSearchParams();
+
+const userEmail = searchParams.get("email") || "";
+console.log("userEmai2",userEmail,"userEmai2")
+
+
+   const router = useRouter()
+     const[showNewPassword , setshowNewPassword] = useState(false)
+     function hundleShowNewPassword()
+{
+  setshowNewPassword(!showNewPassword)
+}
+  const{handleSubmit, formState , register,control,reset} = useForm({
+      resolver : zodResolver(forgotPasswordSchemaStep3),
+      defaultValues : {
+        newPassword:"",
+        email:userEmail
+    
+        
+      }
+    });
+
+  const[isLoading , setisLoading] = useState(false)
+ 
+ async function handleRresetPasswordAction(values: forgotPasswordStep3Values) {
+   
+ console.log(values,"valllla")
+    try {
+      setisLoading(true);
+      const response = await resetPasswordAction(values);
+
+
+
+      if (response?.token) {
+        toast.success("yoy are enter new Password successful please login",
+          {richColors : true, 
+            position:'top-right'
+          }
+        );
+         reset()
+  setTimeout(()=>{
+         router.push("/Login")
+        
+        }
+          ,2000)
+       
+      }
+      
+      else {
+        toast.error(response?.message,
+            {richColors : true, 
+            position:'top-right'
+          }
+        );
+      
+      } 
+    } catch (err) {
+      console.error("Error in verfication code password:", err);
+    } finally {
+      setisLoading(false);
+    }
+  }
 
   return (
     <>
@@ -46,7 +110,7 @@ export default async function ResetPasswordStep3({
         </div>
 
         {/* Form */}
-        <form action={resetPasswordAction} className="space-y-4">
+        <form onSubmit={handleSubmit(handleRresetPasswordAction)} className="space-y-4">
           
           {/* 2. Fix input name to "email" instead of "newPassword" */}
           <input
@@ -61,14 +125,37 @@ export default async function ResetPasswordStep3({
             </Label>
             <div className="relative">
               <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <Input
-                id="newPassword"
-                name="newPassword"
-                type="password"
-                placeholder="Enter new password"
-                required
-                className="pl-10 h-11 border-slate-200 focus-visible:ring-emerald-500"
+              <Controller
+            name="newPassword"
+            control={control}
+            render={({ field, fieldState }) => (
+              <Field className="mb-5">
+                <FieldLabel>new Password</FieldLabel>
+                <Input
+                  {...field}
+                  placeholder="* * * * * *"
+                     type={showNewPassword ? "text" : "password"}
+                  className="h-12"
+
+                />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
+            ></Controller>
+
+            {showNewPassword ? (
+              <Eye
+                className="absolute right-4 top-[52px] cursor-pointer"
+                onClick={hundleShowNewPassword}
               />
+            ) : (
+              <EyeClosed
+                className="absolute right-4 top-[52px] cursor-pointer"
+                onClick={hundleShowNewPassword}
+              />
+            )}
             </div>
           </div>
 

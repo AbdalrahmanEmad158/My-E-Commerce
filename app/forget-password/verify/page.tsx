@@ -1,19 +1,79 @@
 // app/forget-password/verify/page.tsx
+'use client'
 import Link from "next/link";
 import { Mail, KeyRound, Lock, ArrowLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { verifyResetCodeAction } from "../forgetPassword.action";
+import { sendResetCodeAction, verifyResetCodeAction } from "../forgetPassword.action";
+import { useRouter, useSearchParams } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import {forgotPasswordSchemaStep2 } from "../../_Scehmas/AuthSchema";
+import { useState } from "react";
 
-export default async function VerifyCodeStep2({
-  searchParams,
-}: {
-  searchParams: Promise<{ email?: string }>;
-}) {
-  const resolvedParams = await searchParams;
-  const userEmail = resolvedParams?.email || "";
+import { forgotPasswordStep2Values } from "@/interfaces/forgotPasswordStep2.interface";
+import { toast } from "sonner";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 
+export default function VerifyCodeStep2()
+ {
+
+  const searchParams = useSearchParams();
+
+const userEmail = searchParams.get("email") || "";
+console.log("userEmai",userEmail,"userEmai")
+
+
+   const router = useRouter()
+  const{handleSubmit, formState , register,control,reset} = useForm({
+      resolver : zodResolver(forgotPasswordSchemaStep2),
+      defaultValues : {
+        resetCode:"",
+    
+        
+      }
+    });
+
+  const[isLoading , setisLoading] = useState(false)
+ 
+ async function handleVerifyResetCode(values: forgotPasswordStep2Values) {
+   
+ console.log(values,"valllla")
+    try {
+      setisLoading(true);
+      const response = await verifyResetCodeAction(values,userEmail);
+
+
+      if (response?.status == "Success") {
+        toast.success("code verified successful",
+          {richColors : true, 
+            position:'top-right'
+          }
+        );
+         reset()
+  setTimeout(()=>{
+         router.push(`/forget-password/reset?email=${encodeURIComponent(String(userEmail))}`)
+        
+        }
+          ,2000)
+       
+      }
+      
+      else {
+        toast.error("Reset code is invalid or has expired",
+            {richColors : true, 
+            position:'top-right'
+          }
+        );
+      
+      } 
+    } catch (err) {
+      console.error("Error in verfication code password:", err);
+    } finally {
+      setisLoading(false);
+    }
+  }
   return (
     <>
       <div>
@@ -44,28 +104,40 @@ export default async function VerifyCodeStep2({
         </div>
 
         {/* Form */}
-        <form action={verifyResetCodeAction} className="space-y-5">
+        <form onSubmit={handleSubmit(handleVerifyResetCode)} className="space-y-5">
           {/* إرسال الـ email مع كود التحقق */}
-          <input type="hidden" name="email" value={userEmail} />
 
           <div className="space-y-2">
-            <Label htmlFor="resetCode" className="text-xs font-semibold text-slate-700">
-              Reset Code
-            </Label>
+          
             <div className="relative">
               <KeyRound className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <Input
-                id="resetCode"
-                name="resetCode"
-                type="text"
-                placeholder="Enter reset code"
-                required
-                className="pl-10 h-11 border-slate-200 focus-visible:ring-emerald-500"
-              />
+          
+                <Controller
+            name="resetCode"
+            control={control}
+            render={({ field, fieldState }) => (
+              <Field className="mb-5">
+                <FieldLabel>reset Code</FieldLabel>
+                <Input
+                  {...field}
+                  placeholder="* * * * * *"
+                  className="h-12"
+                />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
+          />
+
+
+
+
+
             </div>
           </div>
 
-          <Button type="submit" className="w-full h-11 bg-emerald-600 hover:bg-emerald-700 text-white font-medium">
+          <Button disabled={isLoading} type="submit" className="w-full h-11 bg-emerald-600 hover:bg-emerald-700 text-white font-medium">
             Verify Code
           </Button>
         </form>
