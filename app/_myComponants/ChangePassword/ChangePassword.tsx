@@ -160,11 +160,11 @@ function hundleShowConfirm()
               control={control}
               render={({ field, fieldState }) => (
                 <Field className="mb-5">
-                  <FieldLabel>Password</FieldLabel>
+                  <FieldLabel>new Password</FieldLabel>
                   <Input
                     {...field}
                     type={showNew ? "text" : "password"}
-                    placeholder="Create a strong password"
+                    placeholder="Enter your new password"
                     className="h-12"
                   />
                   {fieldState.invalid && (
@@ -194,11 +194,11 @@ function hundleShowConfirm()
               control={control}
               render={({ field, fieldState }) => (
                 <Field className="mb-5">
-                  <FieldLabel>Confirm Password</FieldLabel>
+                  <FieldLabel>Confirm New Password</FieldLabel>
                   <Input
                     {...field}
                     type={showConfirm ? "text" : "password"}
-                    placeholder="Confirm your password"
+                    placeholder="Confirm your New password"
                     className="h-12"
                   />
                   {fieldState.invalid && (
